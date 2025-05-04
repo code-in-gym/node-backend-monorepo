@@ -2,6 +2,11 @@
 
 A modern, type-safe, and scalable backend template for building REST APIs with Node.js.
 
+## Requirements
+
+- Node.js >= 20.0.0
+- pnpm >= 9.15.4
+
 ## Tech Stack
 
 ### Core
