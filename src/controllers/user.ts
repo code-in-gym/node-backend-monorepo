@@ -1,7 +1,5 @@
 import { Context } from 'koa';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/prisma/client';
 
 export const createUser = async (ctx: Context) => {
   const { email, name } = ctx.request.body as { email: string; name?: string };
