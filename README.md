@@ -9,6 +9,7 @@ A modern, type-safe, and scalable backend template for building REST APIs with N
 - **ORM**: [Prisma](https://www.prisma.io/) - Next-generation ORM for Node.js & TypeScript
 - **Testing**: [Vitest](https://vitest.dev/) - Next-generation testing framework
 - **Logging**: [Pino](https://getpino.io/) + ELK Stack for log analysis
+- **ID Encoding**: [Sqids](https://sqids.org/) - Generate short unique IDs from numbers
 
 ### Development
 - **Runtime**: [tsx](https://github.com/esbuild-kit/tsx) - Enhanced TypeScript execution
@@ -31,7 +32,10 @@ src/
 ├── middlewares/       # Custom middlewares
 ├── prisma/            # Prisma schema and client
 ├── routes/            # Route definitions
+├── types/             # Type definitions
+│   └── models.ts      # Model type constants
 ├── utils/             # Utility functions
+│   └── sqids.ts       # ID encoding utilities
 └── index.ts           # Application entry point
 
 config/
@@ -49,6 +53,7 @@ config/
 - 📦 Docker support
 - 📊 ELK Stack integration
 - ⚡️ Fast development and build
+- 🔑 Secure ID encoding with model-specific namespaces
 
 ## Getting Started
 
@@ -67,6 +72,40 @@ pnpm build
 
 # Start production server
 pnpm start
+```
+
+## Environment Variables
+
+```env
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/dbname?schema=public"
+
+# ID Encoding
+SQIDS_ALPHABET="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" # Optional
+```
+
+## ID Encoding
+
+The template uses [Sqids](https://sqids.org/) for generating short, unique, non-sequential IDs for database records. Key features:
+
+- Model-specific namespaces prevent ID collisions between different models
+- Type-safe model type handling with TypeScript
+- Configurable alphabet for ID generation
+- Minimum length guarantee for security
+- Easy to add new model types
+
+Example usage:
+```typescript
+import { MODEL_TYPES } from '@/types/models';
+import { encodeId, decodeId } from '@/utils/sqids';
+
+// Encoding
+const encodedId = encodeId(MODEL_TYPES.USER, 1);
+// => "Wy9QvXvP1m"
+
+// Decoding
+const id = decodeId(MODEL_TYPES.USER, "Wy9QvXvP1m");
+// => 1
 ```
 
 ## Docker Support
