@@ -1,23 +1,94 @@
-# node-backend-monorepo
+# Node Backend Template
 
-项目概述
-技术栈：
+A modern, type-safe, and scalable backend template for building REST APIs with Node.js.
 
-框架：Koa（轻量、灵活，适合 REST API）
+## Tech Stack
 
-测试：Vitest（高性能、现代化）
+### Core
+- **Framework**: [Koa](https://koajs.com/) - Lightweight and flexible Node.js web framework
+- **ORM**: [Prisma](https://www.prisma.io/) - Next-generation ORM for Node.js & TypeScript
+- **Testing**: [Vitest](https://vitest.dev/) - Next-generation testing framework
+- **Logging**: [Pino](https://getpino.io/) + ELK Stack for log analysis
 
-日志：Pino（高性能）+ ELK（日志分析）
+### Development
+- **Runtime**: [tsx](https://github.com/esbuild-kit/tsx) - Enhanced TypeScript execution
+- **Build**: [esbuild](https://esbuild.github.io/) - An extremely fast bundler for the web
+- **Package Manager**: [pnpm](https://pnpm.io/) - Fast, disk space efficient package manager
+- **Hot Reload**: [nodemon](https://nodemon.io/) - Monitor for changes and auto-restart
 
-ORM：Prisma（现代化、TypeScript 友好）
+### Code Quality
+- **Linting**: ESLint with modern flat config
+- **Formatting**: Prettier
+- **Git Hooks**: Husky + lint-staged
+- **Type Safety**: TypeScript with strict mode
 
-构建：es把手：esbuild（编译 TypeScript/ESM 为 ESM）
+## Project Structure
 
-开发：ts-node + nodemon
+```
+src/
+├── __tests__/          # Test files
+├── controllers/        # Route controllers
+├── middlewares/       # Custom middlewares
+├── prisma/            # Prisma schema and client
+├── routes/            # Route definitions
+├── utils/             # Utility functions
+└── index.ts           # Application entry point
 
-代码质量：ESLint + Prettier + Husky + Lint-staged
+config/
+├── vitest.config.ts   # Vitest configuration
+├── eslint.config.js   # ESLint configuration
+└── tsconfig.json      # TypeScript configuration
+```
 
-包管理：pnpm
+## Features
+- 🚀 Modern ESM support
+- 💪 Full TypeScript support
+- 📝 Comprehensive logging
+- 🔒 Type-safe database operations
+- 🧪 Unit and integration testing
+- 📦 Docker support
+- 📊 ELK Stack integration
+- ⚡️ Fast development and build
 
-目标：打造一个现代化、类型安全、可扩展的服务端模板，适合中小型 REST API 项目，支持生产环境部署和日志分析。
+## Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Run tests
+pnpm test
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
+```
+
+## Docker Support
+
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+```
+
+## Scripts
+
+- `pnpm dev` - Start development server with hot reload
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm test` - Run tests
+- `pnpm test:coverage` - Run tests with coverage
+- `pnpm lint` - Lint code
+- `pnpm format` - Format code
+- `pnpm prisma:generate` - Generate Prisma client
+- `pnpm prisma:migrate` - Run database migrations
+
+## License
+
+MIT
 
